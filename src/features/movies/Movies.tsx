@@ -6,35 +6,17 @@ import { getMovies } from "../../services/movies.services";
 export default function Movies() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const data = await getMovies();
-        setMovies(data);
-      } catch (err: any) {
-        setError(err.message || "Something went wrong");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchMovies();
-  }, []);
+    getMovies()
+      .then(setMovies)
+      .finally(() => setLoading(false));
+  }, [movies]);
 
   if (loading) {
     return (
       <div className="flex items-center justify-center py-20">
         <p className="text-lg text-gray-400 animate-pulse">Loading movies...</p>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="flex items-center justify-center py-20">
-        <p className="text-red-500 text-lg">Error: {error}</p>
       </div>
     );
   }
