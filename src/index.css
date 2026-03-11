@@ -7,8 +7,9 @@
 
 /* Estilos globales */
 body {
-  background-color: #0f0f14; /* más HBO que Netflix */
-  color: white;
+  background-color: red; /* más HBO que Netflix */
+  color: aqua;
+  font-family: 'Inter', sans-serif;
 }
 
 /* Ocultar scrollbar */
